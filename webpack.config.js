@@ -14,6 +14,7 @@ console.log('IS DEV', isDev)
 module.exports = {
     context: path.resolve(__dirname, 'src'),
     mode: "development",
+    target: 'web',
     entry: ['@babel/polyfill', './index.js'],
     output: {
         filename: fileName('js'),
@@ -30,7 +31,7 @@ module.exports = {
     devServer: {
         port: 3000,
         hot: isDev,
-        writeToDisk: true,
+        inline: true
     },
     plugins: [
         new CleanWebpackPlugin(),
@@ -57,8 +58,8 @@ module.exports = {
                 test: /\.s[ac]ss$/i,
                 use: [
                     MiniCssExtractPlugin.loader,
-                    "css-loader",
-                    "sass-loader",
+                    'css-loader',
+                    'sass-loader',
                 ],
             },
             {
